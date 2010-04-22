@@ -1,0 +1,56 @@
+ruby-syscalls
+===
+
+An FFI based library which implements missing POSIX system calls, sticking very
+closely to the C counterparts. Currently, only some signal handling functions
+are implemented.
+
+
+Requirements
+===
+
+* FFI
+
+Tested on MRI 1.9.1 and 1.8.6.
+
+On MRI < 1.8.7, sigprocmask() is not defined due to a bug in the interpretter.
+
+
+Example
+===
+
+Simple example, no error checks:
+
+C:
+
+  #include <signal.h>
+
+  sigset_t sigset;
+
+  sigemptyset(&sigset);
+  sigaddset(&sigset, SIGUSR1);
+  sigsuspend(&sigset);
+
+
+Ruby:
+
+  require "syscalls/signal"
+  
+  sigset = Syscalls::Sigset_t.new.ptr
+
+  Syscalls.sigemptyset(sigset)
+  Syscalls.sigaddset(sigset, "USR1")
+  Syscalls.sigsuspend(sigset)
+  
+
+Or, shorter:
+
+  require "syscalls/signal"
+  
+  Syscalls.sigsuspend([ "USR1" ])
+
+
+Contact
+===
+
+* Mark Somerville <mark@scottishclimbs.com>
