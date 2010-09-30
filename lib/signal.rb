@@ -1,8 +1,13 @@
 # Copyright (C) 2010 Mark Somerville <mark@scottishclimbs.com>
 # Released under the Lesser General Public License (LGPL) version 3.
-# See COPYING
+# See COPYING.
 
-require "ffi"
+begin
+  require "ffi"
+rescue LoadError
+  require "rubygems"
+  require "ffi"
+end
 
 module Syscalls
   extend FFI::Library
