@@ -1,9 +1,8 @@
 ruby-syscalls
 ===
 
-An FFI based library which implements missing POSIX system calls, sticking very
-closely to the C counterparts. Currently, only some signal handling functions
-are implemented.
+An FFI based library which implements some missing POSIX system calls, sticking
+very closely to the C counterparts.
 
 
 Requirements
